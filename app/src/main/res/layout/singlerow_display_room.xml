@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_2sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_20sdp"
+    android:elevation="@dimen/_10sdp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_2sdp">
+
+        <ImageView
+            android:id="@+id/imgDisplay"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/roomimg" />
+
+        <TextView
+            android:id="@+id/roomApartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toRightOf="@id/imgDisplay"
+            android:fontFamily="@font/akaya_telivigala"
+            android:text="Room/Appartment"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/noOfRooms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_toRightOf="@id/imgDisplay"
+            android:fontFamily="@font/akaya_telivigala"
+            android:text="No of Rooms"
+            android:layout_marginTop="-5dp"
+            android:layout_below="@+id/roomApartment"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            />
+        <TextView
+            android:id="@+id/Roomprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_toRightOf="@id/imgDisplay"
+            android:fontFamily="@font/akaya_telivigala"
+            android:text="price"
+            android:layout_marginTop="-5dp"
+            android:layout_below="@+id/noOfRooms"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            />
+
+        <TextView
+            android:id="@+id/landmarkdisplay"
+            android:layout_marginTop="-5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_toRightOf="@id/imgDisplay"
+            android:fontFamily="@font/akaya_telivigala"
+            android:text="Landmark"
+            android:layout_below="@+id/Roomprice"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            />
+       <TextView
+           android:id="@+id/seeMore"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="See More >>"
+           android:textStyle="bold"
+           android:layout_below="@+id/landmarkdisplay"
+           android:layout_toRightOf="@id/imgDisplay"
+           android:textColor="@color/black"
+           android:layout_marginLeft="@dimen/_2sdp"
+           />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">RentalApplication</string>
+    <string name="rental_app">Rental App</string>
+    <string name="by">By</string>
+    <string name="rabina_shahi">Rabina Shahi</string>
+    <string name="rentalHeading">Find Best Place For Your Stay</string>
+    <string name="signup">SignUp</string>
+    <string name="already_sign_up">Already Sign up???..</string>
+    <string name="login">Login</string>
+    <string name="btnsignup">SignUp</string>
+    <string name="btnLogin">Login</string>
+    <string name="login_title">login</string>
+    <string name="phone">Phone Number</string>
+    <string name="password">password</string>
+    <string name="lowPrice">lowPrice</string>
+    <string name="highPrice">HighPrice</string>
+</resources>
