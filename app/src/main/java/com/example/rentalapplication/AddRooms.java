@@ -175,7 +175,8 @@ public class AddRooms extends AppCompatActivity {
                             public void onSuccess(Uri uri) {
                                 FirebaseDatabase FBdatabase = FirebaseDatabase.getInstance();
                                 DatabaseReference dataReference = FBdatabase.getReference("Rooms");
-                                addRoomDataHolder holder= new addRoomDataHolder(Rooms.getText().toString().trim(),checkedItems,price.getText().toString().trim(),peoples.getText().toString().trim(),requirement.getText().toString().trim(),facilities.getText().toString().trim(),landmark.getText().toString().trim(),Location.getText().toString().trim(),uri.toString());
+                                String search=Rooms.getText().toString().trim() + " "+checkedItems+ " " + price.getText().toString().trim() +" "+ peoples.getText().toString().trim() + " "+ facilities.getText().toString().trim() + " " + landmark.getText().toString().trim() + " "+Location.getText().toString().trim();
+                                addRoomDataHolder holder= new addRoomDataHolder(search,Rooms.getText().toString().trim(),checkedItems,price.getText().toString().trim(),peoples.getText().toString().trim(),requirement.getText().toString().trim(),facilities.getText().toString().trim(),landmark.getText().toString().trim(),Location.getText().toString().trim(),uri.toString());
 
                                     String nodeval = UUID.randomUUID().toString().replaceAll("-", "");
                                     dataReference.child(nodeval).setValue(holder);

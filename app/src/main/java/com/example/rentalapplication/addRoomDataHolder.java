@@ -21,7 +21,15 @@ public class addRoomDataHolder {
         this.checkedItems = checkedItems;
     }
 
-    String checkedItems,Rooms;
+    String checkedItems,Rooms,search;
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
 
     String student, Family, workingWomen, workingMen;
 
@@ -65,7 +73,8 @@ public class addRoomDataHolder {
         Rooms = rooms;
     }
 
-    public addRoomDataHolder(String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String location, String roomImg) {
+    public addRoomDataHolder(String search,String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String location, String roomImg) {
+        this.search=search;
         this.Rooms=Rooms;
         this.checkedItems= checkedItems;
         this.price = price;

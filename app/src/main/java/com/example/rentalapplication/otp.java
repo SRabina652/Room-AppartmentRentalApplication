@@ -57,6 +57,8 @@ public class otp extends AppCompatActivity {
                         PhoneAuthCredential phoneCredential = PhoneAuthProvider.getCredential(
                                 backendotp, enteredOtp
                         );
+                        //if the otp is received we will pass it to the set profile page
+                        //Edit this section Later onn
                         FirebaseAuth.getInstance().signInWithCredential(phoneCredential)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -65,6 +67,7 @@ public class otp extends AppCompatActivity {
                                             Intent intent = new Intent(otp.this, HomePage.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
+                                            finish();
                                         } else {
                                             Toast.makeText(otp.this, "Please check your internet connections", Toast.LENGTH_LONG).show();
                                         }
