@@ -57,7 +57,7 @@ public class Signup extends AppCompatActivity {
 
                                 @Override
                                 public void onVerificationFailed(@NonNull FirebaseException e) {
-                                    Toast.makeText(Signup.this, "Error while verifying your phone number", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Signup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
@@ -79,13 +79,13 @@ public class Signup extends AppCompatActivity {
     }
 
     //it checks and if the user is already logged in it directly passes the user to the main actitity
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            Intent intent = new Intent(Signup.this,Displayrooms.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+//            Intent intent = new Intent(Signup.this,Displayrooms.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
+//        }
+//    }
 }

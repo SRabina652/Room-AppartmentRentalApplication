@@ -14,4 +14,11 @@
     <string name="password">password</string>
     <string name="lowPrice">lowPrice</string>
     <string name="highPrice">HighPrice</string>
+    <string name="submit">Submit</string>
+    <string name="name">Enter Your Name</string>
+    <string name="user_profile">User Profile</string>
+    <string name="all_chat">All Chat</string>
+    <string name="chat">Chat</string>
+    <string name="calls">Calls</string>
+
 </resources>
