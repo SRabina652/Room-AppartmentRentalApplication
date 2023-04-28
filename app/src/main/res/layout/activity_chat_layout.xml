@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".ChatLayoutActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
+        android:background="@color/lightBlue"
+        android:id="@+id/toolbar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/toolbarText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chatting"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="vertical"
+        >
+       <com.google.android.material.tabs.TabLayout
+           android:layout_width="match_parent"
+           android:layout_height="?attr/actionBarSize"
+           android:backgroundTint="@color/lightBlue"
+           android:contentDescription="@string/all_chat"
+           app:tabIndicatorColor="@color/white"
+           android:visibility="visible"
+           android:id="@+id/tabLayoutChat"
+           app:tabTextAppearance="@style/tabLayout"
+           app:tabGravity="center"
+           app:tabIndicatorHeight="3dp"
+           app:tabSelectedTextColor="@color/white"
+           app:tabTextColor="@color/purple_200"
+           >
+           <com.google.android.material.tabs.TabItem
+               android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:id="@+id/tabChats"
+               android:text="@string/chat"
+               />
+           <com.google.android.material.tabs.TabItem
+               android:id="@+id/tabcalls"
+               android:visibility="visible"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/calls" />
+       </com.google.android.material.tabs.TabLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/chatViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:contentDescription="@string/all_chat" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
+        android:background="@color/lightBlue"
+        android:id="@+id/profiletoolbar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/backImage"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                android:background="#00FFFFFF"
+                android:layout_centerVertical="true"
+                />
+
+
+            <TextView
+                android:id="@+id/toolbarText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/backImage"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="Profile"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="50dp"
+        >
+
+        <ImageView
+            android:id="@+id/viewUserImage"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/viewProfileUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewUserImage"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:hint="Users Name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</LinearLayout>

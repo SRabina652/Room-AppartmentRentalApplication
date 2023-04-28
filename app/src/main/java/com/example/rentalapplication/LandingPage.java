@@ -35,7 +35,7 @@ public class LandingPage extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(LandingPage.this,LoginPage.class);
+                intent = new Intent(LandingPage.this,Signup.class);
                 startActivity(intent);
             }
         });

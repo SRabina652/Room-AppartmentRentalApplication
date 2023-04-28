@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.rentalapplication.model.ProfileDataHolder;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +38,7 @@ import java.util.UUID;
 
 public class UserProfile extends AppCompatActivity {
 
-    String randomKey,name1;
+    String randomKey, name1;
     StorageReference storageReference;
     Button signupProfile;
     EditText name;
@@ -47,12 +48,11 @@ public class UserProfile extends AppCompatActivity {
     ProfileDataHolder holder;
 
     FirebaseAuth firebaseAuth;
-    private String StrName,ImageUriAccessToken;
+    private String StrName, ImageUriAccessToken;
 
     FirebaseFirestore firebasefirestore;
 
     private FirebaseStorage firebaseStorage;
-
 
 
     @Override
@@ -61,14 +61,14 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
         img = (ImageView) findViewById(R.id.userProfilePicture);
         signupProfile = (Button) findViewById(R.id.saveProfileData);
-        firebaseAuth= FirebaseAuth.getInstance();
-        firebaseStorage=FirebaseStorage.getInstance();
-        storageReference=firebaseStorage.getReference();
-        firebasefirestore= FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
+        firebasefirestore = FirebaseFirestore.getInstance();
 
 
-        img=(ImageView)findViewById(R.id.userProfilePicture);
-        signupProfile=(Button)findViewById(R.id.saveProfileData);
+        img = (ImageView) findViewById(R.id.userProfilePicture);
+        signupProfile = (Button) findViewById(R.id.saveProfileData);
 
 
         img.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +97,7 @@ public class UserProfile extends AppCompatActivity {
 
             try {
 
-                bmap= MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
+                bmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 img.setImageBitmap(bmap);
 
             } catch (Exception e) {
@@ -122,18 +122,19 @@ public class UserProfile extends AppCompatActivity {
         } else {
 
 
-
             FirebaseDatabase Fdata = FirebaseDatabase.getInstance();
-            DatabaseReference ref = Fdata.getReference().child("users").child(firebaseAuth.getUid());
-            ProfileDataHolder profileDataHolder= new ProfileDataHolder(name1,firebaseAuth.getUid());
+//            DatabaseReference ref = Fdata.getReference().child("users").child(firebaseAuth.getUid());
+            DatabaseReference ref = Fdata.getReference(firebaseAuth.getUid());
+
+            ProfileDataHolder profileDataHolder = new ProfileDataHolder(name1, firebaseAuth.getUid());
             ref.setValue(profileDataHolder);
 
-            FirebaseStorage storage=FirebaseStorage.getInstance();
-            StorageReference storageReference=storage.getReference("images").child(firebaseAuth.getUid()).child("ProfileImage");
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageReference = storage.getReference("images").child(firebaseAuth.getUid()).child("ProfileImage");
 
-            ByteArrayOutputStream byteOutputStream=new ByteArrayOutputStream();
-            bmap.compress(Bitmap.CompressFormat.JPEG,20,byteOutputStream);
-            byte[] data=byteOutputStream.toByteArray();
+            ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+            bmap.compress(Bitmap.CompressFormat.JPEG, 20, byteOutputStream);
+            byte[] data = byteOutputStream.toByteArray();
 
 //            storageReference.putFile(filePath)
             storageReference.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -144,7 +145,7 @@ public class UserProfile extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
 
-                            ImageUriAccessToken= uri.toString();
+                            ImageUriAccessToken = uri.toString();
                             Toast.makeText(UserProfile.this, "Uri get Successfully", Toast.LENGTH_SHORT).show();
 
                             storetofirestore();
@@ -169,20 +170,20 @@ public class UserProfile extends AppCompatActivity {
             });
             Toast.makeText(this, "Image Uploaded.", Toast.LENGTH_SHORT).show();
         }
-        Intent intent= new Intent(UserProfile.this,ChatLayoutActivity.class);
+        Intent intent = new Intent(UserProfile.this, ChatLayoutActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void storetofirestore() {
 
-        DocumentReference dReference= firebasefirestore.collection("Users").document(firebaseAuth.getUid());
+        DocumentReference dReference = firebasefirestore.collection("Users").document(firebaseAuth.getUid());
 
-        Map<String,Object> userdata= new HashMap<>();
-        userdata.put("name",name1);
-        userdata.put("image",ImageUriAccessToken);
-        userdata.put("uid",firebaseAuth.getUid());
-        userdata.put("status","online");
+        Map<String, Object> userdata = new HashMap<>();
+        userdata.put("name", name1);
+        userdata.put("image", ImageUriAccessToken);
+        userdata.put("uid", firebaseAuth.getUid());
+        userdata.put("status", "online");
         Toast.makeText(this, "Hi here", Toast.LENGTH_SHORT).show();
         dReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
