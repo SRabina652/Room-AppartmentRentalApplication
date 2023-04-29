@@ -1,9 +1,11 @@
 package com.example.rentalapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,11 @@ public class Displayrooms extends AppCompatActivity {
 
         rcvDisplayContainer = findViewById(R.id.rcvDisplayContainer);
         rcvDisplayContainer.setLayoutManager(new LinearLayoutManager(this));
+
+//        Drawable toolbarDrawableProfile= ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_baseline_more_vert_24);
+//        profiletoolbar.setOverflowIcon(toolbarDrawableProfile);
+//
+//        setSupportActionBar(profiletoolbar);
 
 
         FirebaseRecyclerOptions<addRoomDataHolder> options =

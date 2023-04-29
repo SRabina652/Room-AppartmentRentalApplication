@@ -3,6 +3,7 @@ package com.example.rentalapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,9 +64,9 @@ public class ProfileActivity extends AppCompatActivity {
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent= new Intent(getApplicationContext(),ChatLayoutActivity.class);
-//                startActivity(intent);
-                finish();
+                Intent intent= new Intent(getApplicationContext(),ChatLayoutActivity.class);
+                startActivity(intent);
+
             }
         });
 

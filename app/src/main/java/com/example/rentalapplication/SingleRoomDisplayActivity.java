@@ -36,10 +36,5 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
         facilities.setText(getIntent().getStringExtra("facilities"));
         typetoUseRooms.setText(getIntent().getStringExtra("typeOfAppliers"));
 
-
-
-
-
-
     }
 }

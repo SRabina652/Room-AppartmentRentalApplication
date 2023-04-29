@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.rentalapplication.Adapter.ChatsAdapter;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -23,63 +22,51 @@ public class ChatLayoutActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     TabLayout tabLayout;
-    TabItem chatItem,callItem;
+//   TabItem chatItem, callItem;
     ViewPager viewPager;
     //    TextView chatLayoutTitle;
     ChatsAdapter chatsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_layout);
-        tabLayout=findViewById(R.id.tabLayoutChat);
-        chatItem=findViewById(R.id.tabcalls);
-        viewPager=findViewById(R.id.chatViewPager);
+        tabLayout = findViewById(R.id.tabLayoutChat);
+//        chatItem = findViewById(R.id.tabChats);
+        viewPager = findViewById(R.id.chatViewPager);
 
-        toolbar=findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         //FOR MENU ICON AND white 3 dot
-        Drawable toolbarDrawable= ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_baseline_more_vert_24);
+        Drawable toolbarDrawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_more_vert_24);
         toolbar.setOverflowIcon(toolbarDrawable);
 
         //set action bar
         setSupportActionBar(toolbar);
 
-        chatsAdapter= new ChatsAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+//        chatsAdapter = new ChatsAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+//        viewPager.setAdapter(chatsAdapter);
+
+        chatsAdapter = new ChatsAdapter(getSupportFragmentManager());
         viewPager.setAdapter(chatsAdapter);
 
+        tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+       // tab layout ko kateko wala insert here if error occur
 
-                if (tab.getPosition()==0 || tab.getPosition()==1){
-                    chatsAdapter.notifyDataSetChanged();
-                }
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.profile:
-                Intent intent = new Intent(this,ProfileActivity.class);
+                Intent intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             case R.id.settings:
-                Toast.makeText(getApplicationContext(),"Setting is clicked",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Setting is clicked", Toast.LENGTH_LONG).show();
                 break;
         }
 
@@ -89,8 +76,8 @@ public class ChatLayoutActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater menuInflater= getMenuInflater();
-        menuInflater.inflate(R.menu.menu,menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
         return true;
 
     }

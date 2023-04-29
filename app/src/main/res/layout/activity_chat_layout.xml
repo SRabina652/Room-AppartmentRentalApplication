@@ -30,11 +30,7 @@
                 android:textStyle="bold" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:orientation="vertical"
-        >
+
        <com.google.android.material.tabs.TabLayout
            android:layout_width="match_parent"
            android:layout_height="?attr/actionBarSize"
@@ -48,29 +44,14 @@
            app:tabIndicatorHeight="3dp"
            app:tabSelectedTextColor="@color/white"
            app:tabTextColor="@color/purple_200"
-           >
-           <com.google.android.material.tabs.TabItem
-               android:layout_height="wrap_content"
-               android:layout_width="wrap_content"
-               android:id="@+id/tabChats"
-               android:text="@string/chat"
-               />
-           <com.google.android.material.tabs.TabItem
-               android:id="@+id/tabcalls"
-               android:visibility="visible"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/calls" />
-       </com.google.android.material.tabs.TabLayout>
+           />
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/chatViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:contentDescription="@string/all_chat" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/chatViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:contentDescription="@string/all_chat" />
-
-    </LinearLayout>
 
 </LinearLayout>
