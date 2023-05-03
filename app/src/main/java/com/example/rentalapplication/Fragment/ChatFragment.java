@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,31 +49,35 @@ public class ChatFragment extends Fragment {
 
 
         Query query= firebaseFirestore.collection("Users").whereNotEqualTo("uid",firebaseAuth.getUid());
+//        Query query= firebaseFirestore.collection("Users");
 
         FirestoreRecyclerOptions<chatModel> everyUserName=new FirestoreRecyclerOptions.Builder<chatModel>().setQuery(query,chatModel.class).build();
 
 
         chatAdapter= new FirestoreRecyclerAdapter<chatModel, ChatViewHolder>(everyUserName) {
             @Override
-            protected void onBindViewHolder(@NonNull ChatViewHolder holder, int position, @NonNull chatModel model) {
-                holder.usersHolderName.setText(model.getName());
-                String imagepath=model.getImage();
+            protected void onBindViewHolder(@NonNull ChatViewHolder holder, int position, @NonNull chatModel chatModel) {
+                holder.usersHolderName.setText(chatModel.getName());
+                String imagepath=chatModel.getImage();
 
                 Picasso.get().load(imagepath).into(imageViewHolder);
 
-                if(model.getStatus().equals("online")){
-                    holder.userStatusData.setText(model.getStatus());
+                if(chatModel.getStatus().equals("online")){
+                    holder.userStatusData.setText(chatModel.getStatus());
                     holder.userStatusData.setTextColor(Color.GREEN);
                 }else {
-                    holder.userStatusData.setText(model.getStatus());
+                    holder.userStatusData.setText(chatModel.getStatus());
                 }
+
+
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent= new Intent(getActivity(), individualChat.class);
-                        intent.putExtra("name",model.getName());
-                        intent.putExtra("receiverUid",model.getUserUid());
-//                        intent.putExtra("imageUri",model.getImage());
+                        intent.putExtra("name",chatModel.getName());
+                        intent.putExtra("receiverUid",chatModel.getUid());
+                        intent.putExtra("imageUri",chatModel.getImage());
                         startActivity(intent);
                     }
                 });

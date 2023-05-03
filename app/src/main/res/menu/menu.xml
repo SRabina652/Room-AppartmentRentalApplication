@@ -4,8 +4,4 @@
         android:title="Profile"
         />
 
-    <item android:id="@+id/settings"
-        android:title="Settings"
-        />
-
 </menu>

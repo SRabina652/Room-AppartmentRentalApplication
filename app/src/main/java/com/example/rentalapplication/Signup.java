@@ -78,7 +78,7 @@ public class Signup extends AppCompatActivity {
         });
     }
 
-    //it checks and if the user is already logged in it directly passes the user to the main actitity
+//    it checks and if the user is already logged in it directly passes the user to the main actitity
     @Override
     protected void onStart() {
         super.onStart();

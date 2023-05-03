@@ -1,16 +1,16 @@
 package com.example.rentalapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import com.example.rentalapplication.Adapter.DisplayRoomAdapter;
+import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,18 +19,21 @@ public class Displayrooms extends AppCompatActivity {
     RecyclerView rcvDisplayContainer;
 
     DisplayRoomAdapter adapter;
+
+    androidx.appcompat.widget.Toolbar DisplayRoomstoolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displayrooms);
 
+
         rcvDisplayContainer = findViewById(R.id.rcvDisplayContainer);
         rcvDisplayContainer.setLayoutManager(new LinearLayoutManager(this));
 
-//        Drawable toolbarDrawableProfile= ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_baseline_more_vert_24);
-//        profiletoolbar.setOverflowIcon(toolbarDrawableProfile);
-//
-//        setSupportActionBar(profiletoolbar);
+
+        DisplayRoomstoolbar=findViewById(R.id.displayRoomtoolbar);
+        setSupportActionBar(DisplayRoomstoolbar);
 
 
         FirebaseRecyclerOptions<addRoomDataHolder> options =
@@ -39,6 +42,9 @@ public class Displayrooms extends AppCompatActivity {
                         .build();
         adapter = new DisplayRoomAdapter(options,getApplicationContext());
         rcvDisplayContainer.setAdapter(adapter);
+
+
+
 
     }
     @Override

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DisplayName"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/black"
+                android:paddingRight="@dimen/_5sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/displayRatingUserName"
+                />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/displayRatingUserName"
+                android:id="@+id/displayuserRatingAndReview"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="display users Review Here"
+                android:layout_below="@+id/displayuserRatingAndReview"
+                android:layout_toRightOf="@id/displayRatingUserName"
+                android:textSize="@dimen/_15sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:id="@+id/DisplayUsersReview"
+                />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

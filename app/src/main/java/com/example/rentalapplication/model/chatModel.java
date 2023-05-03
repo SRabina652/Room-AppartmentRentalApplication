@@ -3,16 +3,16 @@ package com.example.rentalapplication.model;
 public class chatModel {
     String name;
     String image;
-    String userUid;
+    String uid;
     String status;
 
     public chatModel() {
     }
 
-    public chatModel(String name, String image, String userUid, String status) {
+    public chatModel(String name, String image, String status , String uid) {
         this.name = name;
         this.image = image;
-        this.userUid = userUid;
+        this.uid = uid;
         this.status = status;
     }
 
@@ -32,12 +32,12 @@ public class chatModel {
         this.image = image;
     }
 
-    public String getUserUid() {
-        return userUid;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUserUid(String userUid) {
-        this.userUid = userUid;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getStatus() {

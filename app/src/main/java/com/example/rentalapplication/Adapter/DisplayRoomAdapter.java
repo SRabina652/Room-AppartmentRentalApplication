@@ -1,4 +1,4 @@
-package com.example.rentalapplication;
+package com.example.rentalapplication.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.rentalapplication.R;
+import com.example.rentalapplication.SingleRoomDisplayActivity;
+import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -39,7 +42,7 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
         holder.seeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(context,SingleRoomDisplayActivity.class);
+                Intent intent= new Intent(context, SingleRoomDisplayActivity.class);
                 intent.putExtra("rooms", model.getRooms());
                 intent.putExtra("landmark", model.getLandmark());
                 intent.putExtra("price", model.getPrice());
@@ -48,6 +51,7 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
                 intent.putExtra("typeOfAppliers", model.getCheckedItems());
                 intent.putExtra("facilities", model.getFacilities());
                 intent.putExtra("requirements", model.getRequirement());
+                intent.putExtra("RandomNumber",model.getRandomNumber());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

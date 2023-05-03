@@ -2,14 +2,14 @@ package com.example.rentalapplication.model;
 
 public class ProfileDataHolder {
     String name;
-    String image;
+    String userUID;
 
     public ProfileDataHolder() {
     }
 
-    public ProfileDataHolder(String name, String image) {
+    public ProfileDataHolder(String name, String userUID) {
         this.name = name;
-        this.image = image;
+        this.userUID = userUID;
     }
 
     public String getName() {
@@ -20,11 +20,11 @@ public class ProfileDataHolder {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getUserUID() {
+        return userUID;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUserUID(String image) {
+        this.userUID = userUID;
     }
 }

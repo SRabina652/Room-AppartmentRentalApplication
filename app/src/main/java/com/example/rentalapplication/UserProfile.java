@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.rentalapplication.model.ProfileDataHolder;
+import com.example.rentalapplication.model.chatModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -184,7 +185,8 @@ public class UserProfile extends AppCompatActivity {
         userdata.put("image", ImageUriAccessToken);
         userdata.put("uid", firebaseAuth.getUid());
         userdata.put("status", "online");
-        Toast.makeText(this, "Hi here", Toast.LENGTH_SHORT).show();
+//        chatModel chatmodel= new chatModel(name1,ImageUriAccessToken,firebaseAuth.getUid(),"Online");
+
         dReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

@@ -65,9 +65,6 @@ public class ChatLayoutActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.settings:
-                Toast.makeText(getApplicationContext(), "Setting is clicked", Toast.LENGTH_LONG).show();
-                break;
         }
 
         return true;

@@ -14,7 +14,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.rentalapplication.model.addRoomDataHolder;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
@@ -30,12 +30,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.InputStream;
 import java.util.Random;
@@ -52,7 +46,8 @@ public class AddRooms extends AppCompatActivity {
     Uri fPath;
     Button add;
     Bitmap bmap;
-
+    //to generate unique value
+    String nodeval;
     private static final int STORAGE_PERMISSION_CODE=100;
     private static final String tag = "PERMISSION_TAG";
     @Override
@@ -176,9 +171,9 @@ public class AddRooms extends AppCompatActivity {
                                 FirebaseDatabase FBdatabase = FirebaseDatabase.getInstance();
                                 DatabaseReference dataReference = FBdatabase.getReference("Rooms");
                                 String search=Rooms.getText().toString().trim() + " "+checkedItems+ " " + price.getText().toString().trim() +" "+ peoples.getText().toString().trim() + " "+ facilities.getText().toString().trim() + " " + landmark.getText().toString().trim() + " "+Location.getText().toString().trim();
-                                addRoomDataHolder holder= new addRoomDataHolder(search,Rooms.getText().toString().trim(),checkedItems,price.getText().toString().trim(),peoples.getText().toString().trim(),requirement.getText().toString().trim(),facilities.getText().toString().trim(),landmark.getText().toString().trim(),Location.getText().toString().trim(),uri.toString());
+                                nodeval = UUID.randomUUID().toString().replaceAll("-", "");
+                                addRoomDataHolder holder= new addRoomDataHolder(nodeval,search,Rooms.getText().toString().trim(),checkedItems,price.getText().toString().trim(),peoples.getText().toString().trim(),requirement.getText().toString().trim(),facilities.getText().toString().trim(),landmark.getText().toString().trim(),Location.getText().toString().trim(),uri.toString());
 
-                                    String nodeval = UUID.randomUUID().toString().replaceAll("-", "");
                                     dataReference.child(nodeval).setValue(holder);
                                     Rooms.setText("");
                                     price.setText("");
@@ -192,7 +187,8 @@ public class AddRooms extends AppCompatActivity {
 
                                     Toast.makeText(AddRooms.this, "Room Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
-
+                                Intent intent= new Intent(AddRooms.this,Displayrooms.class);
+                                startActivity(intent);
                             }
                         });
                     }
@@ -205,4 +201,5 @@ public class AddRooms extends AppCompatActivity {
                     }
                 });
     }
+
 }

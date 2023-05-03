@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginBottom="@dimen/_40sdp"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/receiverchat"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="5sp"
+        android:id="@+id/sendchatlayout"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="display Received Message here"
+            android:textSize="18dp"
+            android:id="@+id/receivedMessage"
+            android:textColor="@color/black"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp"
+            />
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="20:10"
+        android:layout_toRightOf="@+id/sendchatlayout"
+        android:id="@+id/receivertimeOfMessage"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_10sdp"
+        />
+
+</RelativeLayout>

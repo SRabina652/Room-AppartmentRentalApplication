@@ -2,7 +2,10 @@ package com.example.rentalapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +15,8 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
 
     ImageView imgdisplay;
     TextView people,price,landmark,requirements,facilities,rooms,typetoUseRooms;
+
+    Button giveReviewRating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,17 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
         requirements.setText(getIntent().getStringExtra("requirements"));
         facilities.setText(getIntent().getStringExtra("facilities"));
         typetoUseRooms.setText(getIntent().getStringExtra("typeOfAppliers"));
+
+        giveReviewRating=findViewById(R.id.giveReviewRating);
+
+        giveReviewRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(SingleRoomDisplayActivity.this,RatingAndReview.class);
+                intent.putExtra("randomNumber",getIntent().getStringExtra("RandomNumber"));
+                startActivity(intent);
+            }
+        });
 
     }
 }

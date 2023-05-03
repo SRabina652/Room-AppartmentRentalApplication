@@ -1,4 +1,4 @@
-package com.example.rentalapplication;
+package com.example.rentalapplication.model;
 
 public class addRoomDataHolder {
     String price;
@@ -6,6 +6,16 @@ public class addRoomDataHolder {
     String requirement;
     String facilities;
     String landmark;
+
+    String RandomNumber;
+
+    public String getRandomNumber() {
+        return RandomNumber;
+    }
+
+    public void setRandomNumber(String randomNumber) {
+        RandomNumber = randomNumber;
+    }
 
     public addRoomDataHolder() {
     }
@@ -73,7 +83,8 @@ public class addRoomDataHolder {
         Rooms = rooms;
     }
 
-    public addRoomDataHolder(String search,String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String location, String roomImg) {
+    public addRoomDataHolder(String RandomNumber,String search,String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String location, String roomImg) {
+        this.RandomNumber=RandomNumber;
         this.search=search;
         this.Rooms=Rooms;
         this.checkedItems= checkedItems;
