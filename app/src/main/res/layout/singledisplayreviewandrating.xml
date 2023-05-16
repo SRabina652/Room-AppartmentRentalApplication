@@ -12,33 +12,36 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DisplayName"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
                 android:paddingRight="@dimen/_5sdp"
-                android:layout_centerVertical="true"
                 android:id="@+id/displayRatingUserName"
                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/displayRatingUserName"
+                android:text="display users Review Here"
+                android:layout_toRightOf="@+id/displayRatingUserName"
+                android:textSize="@dimen/_15sdp"
+                android:id="@+id/DisplayUsersReview"
+                />
+
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_toRightOf="@+id/displayRatingUserName"
                 android:id="@+id/displayuserRatingAndReview"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="display users Review Here"
-                android:layout_below="@+id/displayuserRatingAndReview"
-                android:layout_toRightOf="@id/displayRatingUserName"
-                android:textSize="@dimen/_15sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:id="@+id/DisplayUsersReview"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/DisplayUsersReview"
                 />
 
 

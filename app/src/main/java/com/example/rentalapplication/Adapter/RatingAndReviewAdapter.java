@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,23 +32,28 @@ public class RatingAndReviewAdapter extends FirebaseRecyclerAdapter<RatingAndRev
         this.context=context;
     }
 
-    @Override
-    protected void onBindViewHolder(@NonNull ratingReviewViewHolder holder, int position, @NonNull RatingAndReviewModel model) {
-        holder.DisplayReview.setText(model.getReview());
-        float ratingValue=model.getRating();
-        holder.displayRatingBar.setRating(ratingValue);
-    }
 
     @NonNull
     @Override
     public ratingReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singledisplayreviewandrating,parent,false);
-        return new RatingAndReviewAdapter.ratingReviewViewHolder(view);
+        return new ratingReviewViewHolder(view);
     }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ratingReviewViewHolder holder, int position, @NonNull RatingAndReviewModel model) {
+        holder.DisplayReview.setText(model.getReview());
+        float ratingValue=model.getRating();
+        holder.displayRatingBar.setRating(ratingValue);
+        holder.name.setText(model.getName());
+    }
+
+
 
 
     public class ratingReviewViewHolder extends RecyclerView.ViewHolder{
         TextView name,DisplayReview;
+
         RatingBar displayRatingBar;
         public ratingReviewViewHolder(@NonNull View itemView) {
             super(itemView);

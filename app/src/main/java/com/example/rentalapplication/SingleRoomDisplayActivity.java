@@ -16,7 +16,7 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
     ImageView imgdisplay;
     TextView people,price,landmark,requirements,facilities,rooms,typetoUseRooms;
 
-    Button giveReviewRating;
+    Button giveReviewRating,viewRatingAndReview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,7 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
         rooms = findViewById(R.id.RoomsDetails);
         typetoUseRooms = findViewById(R.id.typetoUseRooms);
 
+        viewRatingAndReview=findViewById(R.id.viewRatingandreview);
 
         Glide.with(imgdisplay.getContext()).load(getIntent().getStringExtra("images")).into(imgdisplay);
         price.setText(getIntent().getStringExtra("price"));
@@ -48,6 +49,15 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(SingleRoomDisplayActivity.this,RatingAndReview.class);
                 intent.putExtra("randomNumber",getIntent().getStringExtra("RandomNumber"));
+                startActivity(intent);
+            }
+        });
+
+        viewRatingAndReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(SingleRoomDisplayActivity.this,DisplayReviewAndRating.class);
+                intent.putExtra("randomnumber",getIntent().getStringExtra("RandomNumber"));
                 startActivity(intent);
             }
         });
