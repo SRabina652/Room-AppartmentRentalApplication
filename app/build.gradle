@@ -85,4 +85,12 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-storage:8.0.2'
 
 
+
+    implementation ("com.khalti:khalti-android:2.01.00") {
+        transitive = true
+    }
+
+    //openStreetMap
+
+    implementation 'org.osmdroid:osmdroid-android:6.1.10'
 }

@@ -45,7 +45,16 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Room/Appartment"
+        android:textStyle="bold"
+        android:textSize="@dimen/_25sdp"
+        android:layout_gravity="center"
+        />
+  <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvDisplayContainer"
         android:background="@color/background"
         android:padding="@dimen/_10sdp"

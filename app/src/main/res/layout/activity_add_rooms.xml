@@ -255,17 +255,21 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/pLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:hint="Add Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/pLocation"-->
+<!--        android:layout_marginLeft="@dimen/_20sdp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginRight="@dimen/_20sdp"-->
+<!--        android:text="GetLocation"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"-->
+<!--        />-->
+
+
+
 
     <EditText
         android:id="@+id/plandmark"
@@ -278,7 +282,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <Button
         android:id="@+id/roomsubmit"

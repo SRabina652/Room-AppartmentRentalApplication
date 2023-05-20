@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="ROOM/APPARTMENT"
         android:textColor="@color/black"
-        android:textSize="@dimen/_20sdp"
+        android:textSize="@dimen/_18sdp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
     <ImageView
         android:id="@+id/imagedisplay"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -279,6 +279,17 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/giveReviewRating"
         app:layout_constraintTop_toBottomOf="@+id/typetoUseRooms" />
+
+    <Button
+        android:id="@+id/getMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
+        android:layout_marginEnd="136dp"
+        android:text="Get Location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/giveReviewRating" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,11 +2,13 @@ package com.example.rentalapplication.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +20,21 @@ import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.KhaltiCheckOut;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.utils.Constant;
+import com.khalti.widget.KhaltiButton;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+
 public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolder, DisplayRoomAdapter.displayViewHolder> {
 
     Context context;
+    Boolean bookedOrNot=false;
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -38,8 +52,14 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
         holder.noOfRooms.setText(model.getRooms());
         holder.landmarkdisplay.setText(model.getLandmark());
         holder.Roomprice.setText(model.getPrice());
+        if(bookedOrNot){
+            holder.bookedOrNot.setText("This Room Is Already Booked");
+        }else{
+            holder.bookedOrNot.setText("You can book this room");
+        }
+
         Glide.with(holder.imgDisplay.getContext()).load(model.getRoomImg()).into(holder.imgDisplay);
-        holder.seeMore.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, SingleRoomDisplayActivity.class);
@@ -51,11 +71,16 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
                 intent.putExtra("typeOfAppliers", model.getCheckedItems());
                 intent.putExtra("facilities", model.getFacilities());
                 intent.putExtra("requirements", model.getRequirement());
+                intent.putExtra("latitude",model.getLatitude());
+                intent.putExtra("longitude",model.getLongitude());
                 intent.putExtra("RandomNumber",model.getRandomNumber());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
+
+        khaltiPayment(holder.itemView.getContext(),holder.kpay,model.getRandomNumber(),model.getLandmark(),model.getPrice());
+
     }
 
     @NonNull
@@ -65,10 +90,47 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
         return new displayViewHolder(view);
     }
 
+    public void khaltiPayment(Context mctx,KhaltiButton khaltiButton,String productId,String productName,String price){
+        Config.Builder builder = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
+            @Override
+            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                Log.i(action, errorMap.toString());
+                Toast.makeText(mctx, "Error", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(@NonNull Map<String, Object> data) {
+                Log.i("success", data.toString());
+                bookedOrNot=true;
+
+            }
+        })
+                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                    add(PaymentPreference.KHALTI);
+                    add(PaymentPreference.EBANKING);
+                    add(PaymentPreference.MOBILE_BANKING);
+                    add(PaymentPreference.CONNECT_IPS);
+                    add(PaymentPreference.SCT);
+                }});
+
+        Config config = builder.build();
+        khaltiButton.setCheckOutConfig(config);
+
+        KhaltiCheckOut khaltiCheckOut = new KhaltiCheckOut(mctx, config);
+        khaltiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                khaltiCheckOut.show();
+            }
+        });
+    }
+
     public class displayViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imgDisplay;
-        TextView noOfRooms,landmarkdisplay, Roomprice, seeMore;
+        TextView noOfRooms,landmarkdisplay, Roomprice, bookedOrNot;
+        KhaltiButton kpay;
+
         public displayViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -76,7 +138,8 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
             noOfRooms = (TextView)itemView.findViewById(R.id.noOfRooms);
             landmarkdisplay = (TextView)itemView.findViewById(R.id.landmarkdisplay);
             Roomprice = (TextView)itemView.findViewById(R.id.Roomprice);
-            seeMore = (TextView)itemView.findViewById(R.id.seeMore);
+            bookedOrNot = (TextView)itemView.findViewById(R.id.bookedOrNot);
+            kpay = itemView.findViewById(R.id.kpay);
 
         }
     }
