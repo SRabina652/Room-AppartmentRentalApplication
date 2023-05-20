@@ -4,59 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+
     android:orientation="vertical"
     tools:context=".Displayrooms">
-    <androidx.appcompat.widget.Toolbar
+
+    <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="0dp"
-        android:background="@color/lightBlue"
-        android:id="@+id/displayRoomtoolbar">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            >
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/backImage"
-                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
-                android:background="#00FFFFFF"
-                android:layout_centerVertical="true"
-                />
-
-
-            <TextView
-                android:id="@+id/toolbarText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/backImage"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:text="Display Packages"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Room/Appartment"
-        android:textStyle="bold"
-        android:textSize="@dimen/_25sdp"
-        android:layout_gravity="center"
+        android:padding="5dp"
+        android:id="@+id/searchView"
+        app:queryHint="Search rooms"
+        android:layout_margin="@dimen/_10sdp"
         />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="DisplayAllRooms"
+    android:textSize="@dimen/_20sdp"
+    android:layout_gravity="center"
+    android:textStyle="bold"
+    />
+
   <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvDisplayContainer"
-        android:background="@color/background"
         android:padding="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

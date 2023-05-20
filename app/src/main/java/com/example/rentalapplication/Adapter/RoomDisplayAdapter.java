@@ -17,9 +17,6 @@ import com.bumptech.glide.Glide;
 import com.example.rentalapplication.R;
 import com.example.rentalapplication.SingleRoomDisplayActivity;
 import com.example.rentalapplication.model.addRoomDataHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.OnCheckOutListener;
@@ -30,66 +27,65 @@ import com.khalti.widget.KhaltiButton;
 import java.util.ArrayList;
 import java.util.Map;
 
-//this adapter was used before while using the firebase search but not now
-public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolder, DisplayRoomAdapter.displayViewHolder> {
+public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.displayViewHolder> {
 
+    ArrayList<addRoomDataHolder> roomsData;
     Context context;
+
     Boolean bookedOrNot=false;
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public DisplayRoomAdapter(@NonNull FirebaseRecyclerOptions<addRoomDataHolder> options, Context context) {
-        super(options);
-        this.context=context;
+    public RoomDisplayAdapter(ArrayList<addRoomDataHolder> roomsData, Context context) {
+        this.roomsData = roomsData;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public displayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_display_room,parent,false);
+       return new displayViewHolder(view);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull displayViewHolder holder, int position, @NonNull addRoomDataHolder model) {
-        holder.noOfRooms.setText(model.getRooms());
-        holder.landmarkdisplay.setText(model.getLandmark());
-        holder.Roomprice.setText(model.getPrice());
+    public void onBindViewHolder(@NonNull displayViewHolder holder, int position) {
+        holder.noOfRooms.setText(roomsData.get(position).getRooms());
+        holder.landmarkdisplay.setText(roomsData.get(position).getLandmark());
+        holder.Roomprice.setText(roomsData.get(position).getPrice());
         if(bookedOrNot){
             holder.bookedOrNot.setText("This Room Is Already Booked");
         }else{
             holder.bookedOrNot.setText("You can book this room");
         }
 
-        Glide.with(holder.imgDisplay.getContext()).load(model.getRoomImg()).into(holder.imgDisplay);
+        Glide.with(holder.imgDisplay.getContext()).load(roomsData.get(position).getRoomImg()).into(holder.imgDisplay);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, SingleRoomDisplayActivity.class);
-                intent.putExtra("rooms", model.getRooms());
-                intent.putExtra("landmark", model.getLandmark());
-                intent.putExtra("price", model.getPrice());
-                intent.putExtra("images", model.getRoomImg());
-                intent.putExtra("people", model.getPeoples());
-                intent.putExtra("typeOfAppliers", model.getCheckedItems());
-                intent.putExtra("facilities", model.getFacilities());
-                intent.putExtra("requirements", model.getRequirement());
-                intent.putExtra("latitude",model.getLatitude());
-                intent.putExtra("longitude",model.getLongitude());
-                intent.putExtra("RandomNumber",model.getRandomNumber());
+                intent.putExtra("rooms", roomsData.get(position).getRooms());
+                intent.putExtra("landmark", roomsData.get(position).getLandmark());
+                intent.putExtra("price", roomsData.get(position).getPrice());
+                intent.putExtra("images", roomsData.get(position).getRoomImg());
+                intent.putExtra("people", roomsData.get(position).getPeoples());
+                intent.putExtra("typeOfAppliers", roomsData.get(position).getCheckedItems());
+                intent.putExtra("facilities", roomsData.get(position).getFacilities());
+                intent.putExtra("requirements", roomsData.get(position).getRequirement());
+                intent.putExtra("latitude",roomsData.get(position).getLatitude());
+                intent.putExtra("longitude",roomsData.get(position).getLongitude());
+                intent.putExtra("RandomNumber",roomsData.get(position).getRandomNumber());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
 
-        khaltiPayment(holder.itemView.getContext(),holder.kpay,model.getRandomNumber(),model.getLandmark(),model.getPrice());
+        khaltiPayment(holder.itemView.getContext(),holder.kpay,roomsData.get(position).getRandomNumber(),roomsData.get(position).getLandmark(),roomsData.get(position).getPrice());
 
     }
 
-    @NonNull
     @Override
-    public displayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_display_room,parent,false);
-        return new displayViewHolder(view);
+    public int getItemCount() {
+        return roomsData.size();
     }
-
     public void khaltiPayment(Context mctx,KhaltiButton khaltiButton,String productId,String productName,String price){
         Config.Builder builder = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
             @Override
@@ -125,20 +121,20 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
         });
     }
 
-    public class displayViewHolder extends RecyclerView.ViewHolder{
+    public class displayViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgDisplay;
-        TextView noOfRooms,landmarkdisplay, Roomprice, bookedOrNot;
+        TextView noOfRooms, landmarkdisplay, Roomprice, bookedOrNot;
         KhaltiButton kpay;
 
         public displayViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imgDisplay = (ImageView) itemView.findViewById(R.id.imgDisplay);
-            noOfRooms = (TextView)itemView.findViewById(R.id.noOfRooms);
-            landmarkdisplay = (TextView)itemView.findViewById(R.id.landmarkdisplay);
-            Roomprice = (TextView)itemView.findViewById(R.id.Roomprice);
-            bookedOrNot = (TextView)itemView.findViewById(R.id.bookedOrNot);
+            noOfRooms = (TextView) itemView.findViewById(R.id.noOfRooms);
+            landmarkdisplay = (TextView) itemView.findViewById(R.id.landmarkdisplay);
+            Roomprice = (TextView) itemView.findViewById(R.id.Roomprice);
+            bookedOrNot = (TextView) itemView.findViewById(R.id.bookedOrNot);
             kpay = itemView.findViewById(R.id.kpay);
 
         }
