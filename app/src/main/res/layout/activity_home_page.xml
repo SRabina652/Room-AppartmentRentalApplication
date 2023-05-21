@@ -1,262 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HomePage">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="84dp"
-        android:text="Find your Place now"
-        android:textSize="@dimen/_20sdp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="259dp"
-        android:text="SeeAllRooms"
-        android:textSize="@dimen/_15sdp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="@dimen/_28sdp"
-        android:paddingRight="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        android:layout_height="@dimen/_220sdp"
+        android:layout_margin="@dimen/_3sdp"
+        android:background="@drawable/layoutbg"
+        android:orientation="vertical">
 
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <RadioButton
-                android:id="@+id/women"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Women"
-                android:textSize="@dimen/_18sdp"
-                android:padding="@dimen/_7sdp" />
-
-            <RadioButton
-                android:id="@+id/men"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_7sdp"
-                android:textSize="@dimen/_18sdp"
-                android:text="Men" />
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:padding="@dimen/_7sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_18sdp"
-                android:checked="true"
-                android:text="Family" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_28sdp"
-            android:hint="@string/lowPrice">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/lowPrice"
-                android:layout_width="@dimen/_115sdp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textSize="@dimen/_15sdp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:hint="@string/highPrice">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/highPrice"
-                android:layout_width="@dimen/_115sdp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textSize="@dimen/_15sdp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="@dimen/_28sdp"
-        android:paddingRight="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-
-        <RadioGroup
-            android:id="@+id/RoomOrFlat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/Room"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_50sdp"
-                android:paddingRight="@dimen/_20sdp"
-                android:text="Room"
-                android:onClick="ShowRooms"
-                android:textSize="@dimen/_18sdp" />
-
-            <RadioButton
-                android:id="@+id/Flat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:paddingRight="@dimen/_20sdp"
-                android:text="Flat"
-                android:onClick="ShowRooms"
-                android:textSize="@dimen/_18sdp" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/RoomsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/_28sdp"
-        android:paddingRight="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
-
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="Number of rooms: "
-            android:textSize="@dimen/_20sdp" />
+            android:padding="@dimen/_20sdp">
 
-        <RadioGroup
+            <ImageButton
+                android:id="@+id/profilebutton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/profile" />
+
+            <ImageButton
+                android:id="@+id/logoutbutton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right|end"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/logout" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="monospace"
+                android:text="Here You Can Find Best Places to Rent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/oneRoom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_7sdp"
-                android:text="One"
-                android:textSize="@dimen/_15sdp" />
-
-            <RadioButton
-                android:id="@+id/twoRooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_7sdp"
-                android:text="Two"
-                android:textSize="@dimen/_15sdp" />
-
-            <RadioButton
-                android:id="@+id/threeRooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:padding="@dimen/_7sdp"
-                android:text="Three or more"
-                android:textSize="@dimen/_15sdp" />
-        </RadioGroup>
+            android:text="ChatWithOthers"
+            android:background="@drawable/byttonwhite"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_18sdp"
+            android:id="@+id/chatwithOthers"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            />
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quote"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textStyle="bold"
+        android:textSize="@dimen/_18sdp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="by Angela Wood"
+        android:fontFamily="monospace"
+        android:textSize="@dimen/_13sdp"
+        android:gravity="center"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:textColor="@color/black"
+        />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/viewRooms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="@dimen/_5sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:text="Do you have rental Property: "
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:text="ViewAllRooms"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:background="@drawable/button"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/Post"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="12dp"
-        android:text="Post"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
-        android:id="@+id/search"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="12dp"
-        android:text="Search"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RoomsLayout" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_30sdp"
+        >
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:fontFamily="monospace"
+            android:text="Do you have Property You want to rent: "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_18sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search" />
+
+        <TextView
+            android:id="@+id/PostRooms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="12dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Post"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

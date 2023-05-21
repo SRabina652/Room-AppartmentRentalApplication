@@ -76,4 +76,12 @@ public class DisplayReviewAndRating extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(this, Displayrooms.class);
+        startActivity(intent);
+
+    }
 }

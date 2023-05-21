@@ -207,4 +207,12 @@ public class individualChat extends AppCompatActivity {
             individualMessagesAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(this, ChatLayoutActivity.class);
+        startActivity(intent);
+
+    }
 }

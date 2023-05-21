@@ -39,6 +39,12 @@ public class AddRooms extends AppCompatActivity {
     static Integer node = 0;
 
     String checkedItems = "";
+    String search="";
+    String getPrice="";
+    String getPeople="";
+    String getRequirement="";
+    String getlandmark="";
+    String getFacilities="";
     CheckBox checkbox_Student, checkbox_Family, checkbox_women, checkbox_men;
     TextInputEditText price, peoples, requirement, facilities, Rooms;
     EditText landmark;
@@ -89,8 +95,8 @@ public class AddRooms extends AppCompatActivity {
         longitude = intent.getStringExtra("longitude");
         latitude = intent.getStringExtra("latitude");
 
-        Toast.makeText(this, longitude, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, latitude, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, longitude, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, latitude, Toast.LENGTH_SHORT).show();
 
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -173,45 +179,70 @@ public class AddRooms extends AppCompatActivity {
             checkedItems = checkedItems + ", " + men;
         }
 
-        dataUploader.putFile(fPath)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        if(fPath==null){
+            Toast.makeText(this, "Please Upload Image", Toast.LENGTH_SHORT).show();
+        }else{
+            dataUploader.putFile(fPath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        dataUploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                FirebaseDatabase FBdatabase = FirebaseDatabase.getInstance();
-                                DatabaseReference dataReference = FBdatabase.getReference("Rooms");
-                                String search = Rooms.getText().toString().trim() + " " + checkedItems + " " + price.getText().toString().trim() + " " + peoples.getText().toString().trim() + " " + facilities.getText().toString().trim() + " " + landmark.getText().toString().trim();
-                                nodeval = UUID.randomUUID().toString().replaceAll("-", "");
-                                addRoomDataHolder holder = new addRoomDataHolder("notBooked", nodeval, search, Rooms.getText().toString().trim(), checkedItems, price.getText().toString().trim(), peoples.getText().toString().trim(), requirement.getText().toString().trim(), facilities.getText().toString().trim(), landmark.getText().toString().trim(), latitude.trim(),longitude.trim(),uri.toString());
+                            dataUploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    FirebaseDatabase FBdatabase = FirebaseDatabase.getInstance();
+                                    DatabaseReference dataReference = FBdatabase.getReference("Rooms");
+                                    getPrice=price.getText().toString().trim();
+                                    getPeople=peoples.getText().toString().trim();
+                                    getRequirement=requirement.getText().toString().trim();
+                                    getlandmark=landmark.getText().toString().trim();
+                                    getFacilities=facilities.getText().toString().trim();
+                                    search = Rooms.getText().toString().trim() + " " + checkedItems + " " + getPrice + " " + getPeople + " " + getFacilities +" "+getRequirement +" " + getlandmark;
+                                    nodeval = UUID.randomUUID().toString().replaceAll("-", "");
 
-                                dataReference.child(nodeval).setValue(holder);
-                                Rooms.setText("");
-                                price.setText("");
-                                peoples.setText("");
-                                requirement.setText("");
-                                facilities.setText("");
-                                landmark.setText("");
-                                roomImg.setImageResource(R.drawable.ic_launcher_background);
+                                    if(getPrice.isEmpty() || getPeople.isEmpty() || getRequirement.isEmpty() || getlandmark.isEmpty() || getFacilities.isEmpty() || fPath.getPath() == null){
+                                        Toast.makeText(AddRooms.this, "Please give all the details in the form", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        addRoomDataHolder holder = new addRoomDataHolder("notBooked", nodeval, search, Rooms.getText().toString().trim(), checkedItems, getPrice, getPeople, getRequirement, getFacilities, getlandmark, latitude.trim(), longitude.trim(), uri.toString());
+                                        dataReference.child(nodeval).setValue(holder);
+
+
+                                        Rooms.setText("");
+                                        price.setText("");
+                                        peoples.setText("");
+                                        requirement.setText("");
+                                        facilities.setText("");
+                                        landmark.setText("");
+                                        roomImg.setImageResource(R.drawable.ic_launcher_background);
 //                                Toast.makeText(AddRooms.this, checkedItems, Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(AddRooms.this, "Room Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                                Intent intent = new Intent(AddRooms.this, Displayrooms.class);
-                                startActivity(intent);
+                                        Toast.makeText(AddRooms.this, "Room Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(AddRooms.this, Displayrooms.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                float uploadpercent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                                dialog.setMessage("uploaded :" + (int) uploadpercent + " %");
                             }
-                        });
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        float uploadpercent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                        dialog.setMessage("uploaded :" + (int) uploadpercent + " %");
-                    }
-                });
+                    });
+        }
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(this, Displayrooms.class);
+        startActivity(intent);
+
     }
 
 }

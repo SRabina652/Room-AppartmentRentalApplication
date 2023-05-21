@@ -78,4 +78,11 @@ public class ChatLayoutActivity extends AppCompatActivity {
         return true;
 
     }
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(this, Displayrooms.class);
+        startActivity(intent);
+
+    }
 }

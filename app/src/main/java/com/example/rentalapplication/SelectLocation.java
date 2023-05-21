@@ -210,6 +210,12 @@ public class SelectLocation extends AppCompatActivity {
         //Configuration.getInstance().save(this, prefs);
         map.onPause();  //needed for compass, my location overlays, v6.0.0 and up
     }
+    @Override
+    public void onBackPressed() {
 
+        Intent intent = new Intent(this, Displayrooms.class);
+        startActivity(intent);
+
+    }
 }
 

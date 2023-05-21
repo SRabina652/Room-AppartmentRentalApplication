@@ -18,25 +18,24 @@ public class ChatsAdapter  extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if (position==0){
-            return new ChatFragment();
-        }else{
-            return  new CallFragment();
-        }
+//        if (position==0){
+//            return new ChatFragment();
+//        }else{
+            return  new ChatFragment();
+//        }
     }
 
     @Override
     public int getCount() {
-        return 2;//number of tabs
+        return 1;//number of tabs
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        if(position == 0){
-            return "Chats";
-        }else {
-            return "Calls";
-        }
+//        if(position == 0){
+//            return "Chats";
+//        }
+        return "Chats";
     }
 }

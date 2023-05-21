@@ -20,6 +20,8 @@ import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.OnCheckOutListener;
@@ -102,6 +104,10 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
             public void onSuccess(@NonNull Map<String, Object> data) {
                 Log.i("success", data.toString());
                 bookedOrNot=true;
+
+                //you have to perform some operation here
+//                DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Rooms");
+//                databaseRef.setValue(bookedOrNot);
 
             }
         })
