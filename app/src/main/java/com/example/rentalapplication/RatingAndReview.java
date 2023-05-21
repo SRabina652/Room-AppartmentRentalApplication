@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rentalapplication.model.RatingAndReviewModel;
@@ -26,7 +27,7 @@ public class RatingAndReview extends AppCompatActivity {
     EditText userReview;
 
     String rootnode, name;
-    Button submitReviewAndRating;
+    TextView submitReviewAndRating;
     FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

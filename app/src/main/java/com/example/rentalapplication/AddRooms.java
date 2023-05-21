@@ -19,11 +19,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rentalapplication.model.addRoomDataHolder;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -50,12 +53,13 @@ public class AddRooms extends AppCompatActivity {
     EditText landmark;
     ImageView roomImg;
     Uri fPath;
-    Button add;
+    TextView add;
     Bitmap bmap;
     //to generate unique value
     String nodeval;
 
-
+    String ownersuid;
+    private FirebaseAuth mAuth;
     String longitude;
     String latitude;
     private static final int STORAGE_PERMISSION_CODE = 100;
@@ -95,8 +99,16 @@ public class AddRooms extends AppCompatActivity {
         longitude = intent.getStringExtra("longitude");
         latitude = intent.getStringExtra("latitude");
 
-//        Toast.makeText(this, longitude, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, latitude, Toast.LENGTH_SHORT).show();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        // Generate a UID for the current user
+
+        FirebaseAuth firebaseAuth;
+        firebaseAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user = mAuth.getCurrentUser();
+        ownersuid = firebaseAuth.getUid();
+
 
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -203,7 +215,7 @@ public class AddRooms extends AppCompatActivity {
                                     if(getPrice.isEmpty() || getPeople.isEmpty() || getRequirement.isEmpty() || getlandmark.isEmpty() || getFacilities.isEmpty() || fPath.getPath() == null){
                                         Toast.makeText(AddRooms.this, "Please give all the details in the form", Toast.LENGTH_SHORT).show();
                                     }else {
-                                        addRoomDataHolder holder = new addRoomDataHolder("notBooked", nodeval, search, Rooms.getText().toString().trim(), checkedItems, getPrice, getPeople, getRequirement, getFacilities, getlandmark, latitude.trim(), longitude.trim(), uri.toString());
+                                        addRoomDataHolder holder = new addRoomDataHolder("notBooked", nodeval, search, Rooms.getText().toString().trim(), checkedItems, getPrice, getPeople, getRequirement, getFacilities, getlandmark, latitude.trim(), longitude.trim(),ownersuid, uri.toString());
                                         dataReference.child(nodeval).setValue(holder);
 
 
@@ -240,7 +252,7 @@ public class AddRooms extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(this, Displayrooms.class);
+        Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
 
     }

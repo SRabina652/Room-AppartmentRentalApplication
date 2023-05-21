@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".SelectLocation">
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,13 +29,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
+    <TextView
         android:layout_marginTop="-70dp"
         android:id="@+id/getLocation"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:padding="@dimen/_10sdp"
+        android:background="@drawable/button"
         android:text="set Location" />
 
 

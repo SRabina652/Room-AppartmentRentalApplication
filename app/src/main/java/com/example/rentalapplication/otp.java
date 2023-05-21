@@ -30,7 +30,7 @@ public class otp extends AppCompatActivity {
 
     TextInputEditText enterOtp;
     TextView phonenumber;
-    Button btnVerify;
+    TextView btnVerify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

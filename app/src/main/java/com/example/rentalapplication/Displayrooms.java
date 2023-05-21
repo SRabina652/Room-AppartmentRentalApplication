@@ -39,9 +39,9 @@ public class Displayrooms extends AppCompatActivity {
 
     SearchView searchView;
 
-    TextView logout;
-
-    Button chatting;
+//    TextView logout;
+//
+//    Button chatting;
 
 //    androidx.appcompat.widget.Toolbar DisplayRoomstoolbar;
 
@@ -57,31 +57,31 @@ public class Displayrooms extends AppCompatActivity {
         rcvDisplayContainer = findViewById(R.id.rcvDisplayContainer);
         searchView = findViewById(R.id.searchView);
 
-        chatting=findViewById(R.id.chatWithOther);
+//        chatting=findViewById(R.id.chatWithOther);
 
-        chatting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        chatting.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent intent = new Intent(Displayrooms.this, ChatLayoutActivity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
-                Intent intent = new Intent(Displayrooms.this, ChatLayoutActivity.class);
-                startActivity(intent);
+//        logout=findViewById(R.id.logout);
 
-            }
-        });
-
-        logout=findViewById(R.id.logout);
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                firebaseAuth.signOut();
-
-                Intent intent = new Intent(Displayrooms.this, Signup.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+//                firebaseAuth.signOut();
+//
+//                Intent intent = new Intent(Displayrooms.this, Signup.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Rooms");
@@ -151,8 +151,7 @@ public class Displayrooms extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        Intent intent = new Intent(this, ProfileActivity.class);
+        Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
 
     }

@@ -9,10 +9,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LandingPage extends AppCompatActivity {
 
-    Button signup;
-    TextView login;
+    TextView signup;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +23,22 @@ public class LandingPage extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         signup = findViewById(R.id.signup);
-        login = findViewById(R.id.login);
-
         signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(LandingPage.this,HomePage.class);
-                startActivity(intent);
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(LandingPage.this,Signup.class);
                 startActivity(intent);
             }
         });
+    }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            Intent intent = new Intent(LandingPage.this,HomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 }

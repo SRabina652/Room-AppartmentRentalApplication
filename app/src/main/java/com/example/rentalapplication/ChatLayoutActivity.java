@@ -81,7 +81,7 @@ public class ChatLayoutActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(this, Displayrooms.class);
+        Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
 
     }

@@ -37,7 +37,7 @@ public class SelectLocation extends AppCompatActivity {
 
     MapView map;
     EditText location;
-    Button getLocation;
+    TextView getLocation;
     String locationName;
     String longitude="";
     String latitude="";
@@ -66,7 +66,6 @@ public class SelectLocation extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-
                 }
 
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +21,10 @@ import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.OnCheckOutListener;
@@ -51,19 +54,21 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
 
     @Override
     protected void onBindViewHolder(@NonNull displayViewHolder holder, int position, @NonNull addRoomDataHolder model) {
+
         holder.noOfRooms.setText(model.getRooms());
         holder.landmarkdisplay.setText(model.getLandmark());
         holder.Roomprice.setText(model.getPrice());
         if(bookedOrNot){
             holder.bookedOrNot.setText("This Room Is Already Booked");
         }else{
-            holder.bookedOrNot.setText("You can book this room");
+            holder.bookedOrNot.setText("this is the place for uid");
         }
 
         Glide.with(holder.imgDisplay.getContext()).load(model.getRoomImg()).into(holder.imgDisplay);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent= new Intent(context, SingleRoomDisplayActivity.class);
                 intent.putExtra("rooms", model.getRooms());
                 intent.putExtra("landmark", model.getLandmark());
@@ -76,6 +81,8 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
                 intent.putExtra("latitude",model.getLatitude());
                 intent.putExtra("longitude",model.getLongitude());
                 intent.putExtra("RandomNumber",model.getRandomNumber());
+                intent.putExtra("ownersuid",model.getOwnersuid());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -135,8 +142,8 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
 
         ImageView imgDisplay;
         TextView noOfRooms,landmarkdisplay, Roomprice, bookedOrNot;
-        KhaltiButton kpay;
 
+        KhaltiButton kpay;
         public displayViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -146,7 +153,6 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
             Roomprice = (TextView)itemView.findViewById(R.id.Roomprice);
             bookedOrNot = (TextView)itemView.findViewById(R.id.bookedOrNot);
             kpay = itemView.findViewById(R.id.kpay);
-
         }
     }
 }

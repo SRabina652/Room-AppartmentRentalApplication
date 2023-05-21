@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
-        android:background="@color/lightBlue"
+        android:background="@color/red"
         android:id="@+id/reviewRatingtoolbar">
         <RelativeLayout
             android:layout_width="match_parent"

@@ -27,6 +27,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chat"
+        android:id="@+id/chats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
 
     <ImageView
         android:id="@+id/imagedisplay"
@@ -258,35 +269,41 @@
 
     <!--    map ko thau-->
 
-    <Button
+    <TextView
         android:id="@+id/giveReviewRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Give Rating and review"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/typetoUseRooms" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="RatingandReview"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
         android:id="@+id/viewRatingandreview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/giveReviewRating"
         app:layout_constraintTop_toBottomOf="@+id/typetoUseRooms" />
 
-    <Button
+    <TextView
         android:id="@+id/getMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="117dp"
         android:layout_marginEnd="136dp"
         android:text="Get Location"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/giveReviewRating" />

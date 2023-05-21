@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getApplicationContext(),ChatLayoutActivity.class);
+                Intent intent= new Intent(getApplicationContext(),HomePage.class);
                 startActivity(intent);
 
             }

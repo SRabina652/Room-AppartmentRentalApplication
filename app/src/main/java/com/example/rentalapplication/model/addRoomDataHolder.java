@@ -5,26 +5,19 @@ public class addRoomDataHolder {
     String bookedOrNot;
     String  latitude;
     String longitude;
+    String ownersuid;
+
+    public String getOwnersuid() {
+        return ownersuid;
+    }
+
+    public void setOwnersuid(String ownersuid) {
+        this.ownersuid = ownersuid;
+    }
 
     public String getBookedOrNot() {
         return bookedOrNot;
     }
-
-    public addRoomDataHolder( String bookedOrNot,String RandomNumber,String search,String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String location, String roomImg) {
-        this.bookedOrNot = bookedOrNot;
-        this.RandomNumber=RandomNumber;
-        this.search=search;
-        this.Rooms=Rooms;
-        this.checkedItems= checkedItems;
-        this.price = price;
-        this.peoples = peoples;
-        this.requirement = requirement;
-        this.facilities = facilities;
-        this.landmark = landmark;
-        Location = location;
-        this.roomImg = roomImg;
-    }
-
 
 
     public void setBookedOrNot(String bookedOrNot) {
@@ -112,20 +105,6 @@ public class addRoomDataHolder {
         Rooms = rooms;
     }
 
-    public addRoomDataHolder(String RandomNumber,String search,String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String location, String roomImg) {
-        this.RandomNumber=RandomNumber;
-        this.search=search;
-        this.Rooms=Rooms;
-        this.checkedItems= checkedItems;
-        this.price = price;
-        this.peoples = peoples;
-        this.requirement = requirement;
-        this.facilities = facilities;
-        this.landmark = landmark;
-        Location = location;
-        this.roomImg = roomImg;
-    }
-
     public String getLatitude() {
         return latitude;
     }
@@ -142,6 +121,8 @@ public class addRoomDataHolder {
         this.longitude = longitude;
     }
 
+
+
     public addRoomDataHolder(String bookedOrNot, String RandomNumber, String search, String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String latitude, String longitude, String roomImg) {
         this.bookedOrNot = bookedOrNot;
         this.RandomNumber=RandomNumber;
@@ -155,6 +136,24 @@ public class addRoomDataHolder {
         this.landmark = landmark;
         this.latitude=latitude;
         this.longitude=longitude;
+        this.roomImg = roomImg;
+    }
+
+
+    public addRoomDataHolder(String bookedOrNot, String RandomNumber, String search, String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String latitude, String longitude,String ownersuid, String roomImg) {
+        this.bookedOrNot = bookedOrNot;
+        this.RandomNumber=RandomNumber;
+        this.search=search;
+        this.Rooms=Rooms;
+        this.checkedItems= checkedItems;
+        this.price = price;
+        this.peoples = peoples;
+        this.requirement = requirement;
+        this.facilities = facilities;
+        this.landmark = landmark;
+        this.latitude=latitude;
+        this.longitude=longitude;
+        this.ownersuid=ownersuid;
         this.roomImg = roomImg;
     }
     public String getPrice() {

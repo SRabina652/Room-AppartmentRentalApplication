@@ -13,21 +13,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.rentalapplication.model.ProfileDataHolder;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SingleRoomDisplayActivity extends AppCompatActivity {
 
     String longitude;
     String latitude;
+
+    String ownersuid;
+
+    Button chatBtn;
+
     ImageView imgdisplay;
     TextView people,price,landmark,requirements,facilities,rooms,typetoUseRooms;
 
-    Button giveReviewRating,viewRatingAndReview;
+    TextView giveReviewRating,viewRatingAndReview;
 
-    Button getMap;
+    TextView getMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_room_display);
+
 
         imgdisplay = findViewById(R.id.imagedisplay);
         price = findViewById(R.id.displaypriceDesc);
@@ -54,8 +67,14 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
         longitude = getIntent().getStringExtra("longitude");
         latitude = getIntent().getStringExtra("latitude");
 
-        Toast.makeText(this, longitude, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, latitude, Toast.LENGTH_SHORT).show();
+        ownersuid=getIntent().getStringExtra("ownersuid");
+
+
+         if (ownersuid==null){
+             Toast.makeText(this, "This is null", Toast.LENGTH_SHORT).show();
+         }else {
+             Toast.makeText(this, "This is not null", Toast.LENGTH_SHORT).show();
+         }
 
         giveReviewRating=findViewById(R.id.giveReviewRating);
 
@@ -65,6 +84,36 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
                 Intent intent= new Intent(SingleRoomDisplayActivity.this,RatingAndReview.class);
                 intent.putExtra("randomNumber",getIntent().getStringExtra("RandomNumber"));
                 startActivity(intent);
+            }
+        });
+        chatBtn=findViewById(R.id.chats);
+
+
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatabaseReference databaseReference=firebaseDatabase.getReference(ownersuid);
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        ProfileDataHolder userProfile=snapshot.getValue(ProfileDataHolder.class);
+
+                        Intent intent = new Intent(SingleRoomDisplayActivity.this,individualChat.class);
+                        intent.putExtra("name",userProfile.getName());
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        Toast.makeText(getApplicationContext(),"Failed to fetch datas",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
             }
         });
 

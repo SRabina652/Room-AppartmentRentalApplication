@@ -82,6 +82,12 @@ public class HomePage extends AppCompatActivity {
         });
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 //    public void ShowRooms(View v){
 //        if(rooms.isChecked()){
 //            RoomsLayout.setVisibility(View.VISIBLE);

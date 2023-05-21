@@ -148,13 +148,19 @@ public class individualChat extends AppCompatActivity {
 
         nameOfSpecificUser.setText(receivername);
 
-        String filepath=intent.getStringExtra("imageUri");
+        if(intent.getStringExtra("imageUri")==null){
 
-        if(filepath.isEmpty()){
-            Toast.makeText(this, "No image is Displayed", Toast.LENGTH_SHORT).show();
         }else{
+            String filepath=intent.getStringExtra("imageUri");
             Picasso.get().load(filepath).into(individualProfileImage);
+
         }
+
+//        if(filepath.isEmpty()){
+//            Toast.makeText(this, "No image is Displayed", Toast.LENGTH_SHORT).show();
+//        }else{
+//            Picasso.get().load(filepath).into(individualProfileImage);
+//        }
 
 
 

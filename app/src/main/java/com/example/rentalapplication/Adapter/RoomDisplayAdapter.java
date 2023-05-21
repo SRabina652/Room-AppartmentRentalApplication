@@ -73,6 +73,8 @@ public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.
                 intent.putExtra("latitude",roomsData.get(position).getLatitude());
                 intent.putExtra("longitude",roomsData.get(position).getLongitude());
                 intent.putExtra("RandomNumber",roomsData.get(position).getRandomNumber());
+                intent.putExtra("ownersuid",roomsData.get(position).getOwnersuid());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

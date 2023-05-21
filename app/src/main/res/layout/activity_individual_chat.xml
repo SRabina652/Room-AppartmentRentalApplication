@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
-        android:background="@color/lightBlue"
+        android:background="@color/red"
         android:id="@+id/IndividualChattoolbar">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -113,7 +113,7 @@
             android:id="@+id/sendMessageImageView"
             android:src="@drawable/baseline_send_24"
             android:scaleType="centerCrop"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/red"
             app:tint="@color/white" />
     </androidx.cardview.widget.CardView>
 

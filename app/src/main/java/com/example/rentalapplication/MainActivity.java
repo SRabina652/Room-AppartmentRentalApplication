@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Intent is used to switch from one activity to another.
-                Intent i = new Intent(MainActivity.this, Signup.class);
+                Intent i = new Intent(MainActivity.this, LandingPage.class);
                 startActivity(i); // invoke the SecondActivity.
                 finish(); // the current activity will get finished.
             }
