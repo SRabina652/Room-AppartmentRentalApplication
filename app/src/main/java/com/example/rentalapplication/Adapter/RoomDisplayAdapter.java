@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.OnCheckOutListener;
-import com.khalti.checkout.helper.PaymentPreference;
-import com.khalti.utils.Constant;
 import com.khalti.widget.KhaltiButton;
 
 
@@ -40,6 +39,14 @@ public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.
 
     String customersUid = "";
 
+    private DisplayRoomAdapter.OnItemClickListener listener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(DisplayRoomAdapter.OnItemClickListener clickListener){
+        this.listener=clickListener;
+    }
     public RoomDisplayAdapter(ArrayList<addRoomDataHolder> roomsData, Context context) {
         this.roomsData = roomsData;
         this.context = context;
@@ -55,7 +62,7 @@ public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.
     @Override
     public displayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_display_room, parent, false);
-        return new displayViewHolder(view);
+        return new displayViewHolder(view,listener);
     }
 
     @Override
@@ -69,6 +76,13 @@ public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.
             holder.bookedOrNot.setText("You can book this room");
         } else {
             holder.bookedOrNot.setText("Please Consult the owner before payment");
+        }
+
+        //checks weather the user have same room id as owner of the room
+        if(customersUid.equals(roomsData.get(position).getOwnersuid())) {
+            holder.delete.setVisibility(View.VISIBLE);
+        }else {
+            holder.delete.setVisibility(View.GONE);
         }
 
         Glide.with(holder.imgDisplay.getContext()).load(roomsData.get(position).getRoomImg()).into(holder.imgDisplay);
@@ -169,7 +183,9 @@ public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.
         TextView noOfRooms, landmarkdisplay, Roomprice, bookedOrNot;
         KhaltiButton khaltiButton;
 
-        public displayViewHolder(@NonNull View itemView) {
+        ImageButton delete;
+
+        public displayViewHolder(@NonNull View itemView, DisplayRoomAdapter.OnItemClickListener listener) {
             super(itemView);
 
             imgDisplay = (ImageView) itemView.findViewById(R.id.imgDisplay);
@@ -178,6 +194,15 @@ public class RoomDisplayAdapter extends RecyclerView.Adapter<RoomDisplayAdapter.
             Roomprice = (TextView) itemView.findViewById(R.id.Roomprice);
             bookedOrNot = (TextView) itemView.findViewById(R.id.bookedOrNot);
             khaltiButton = itemView.findViewById(R.id.kpay);
+
+            delete= itemView.findViewById(R.id.delete);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

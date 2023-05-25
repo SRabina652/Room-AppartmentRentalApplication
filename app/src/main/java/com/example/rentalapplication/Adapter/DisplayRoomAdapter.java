@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,10 +21,6 @@ import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.khalti.checkout.helper.Config;
 import com.khalti.checkout.helper.KhaltiCheckOut;
 import com.khalti.checkout.helper.OnCheckOutListener;
@@ -41,12 +37,21 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
     Context context;
     Boolean bookedOrNot=false;
 
+    private  OnItemClickListener listener;
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener clickListener){
+        this.listener=clickListener;
+    }
     public DisplayRoomAdapter(@NonNull FirebaseRecyclerOptions<addRoomDataHolder> options, Context context) {
         super(options);
         this.context=context;
@@ -96,7 +101,7 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
     @Override
     public displayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_display_room,parent,false);
-        return new displayViewHolder(view);
+        return new displayViewHolder(view,listener);
     }
 
     public void khaltiPayment(Context mctx,KhaltiButton khaltiButton,String productId,String productName,String price){
@@ -145,7 +150,9 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
         TextView noOfRooms,landmarkdisplay, Roomprice, bookedOrNot;
 
         KhaltiButton kpay;
-        public displayViewHolder(@NonNull View itemView) {
+
+        ImageButton delete;
+        public displayViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
 
             imgDisplay = (ImageView) itemView.findViewById(R.id.imgDisplay);
@@ -154,6 +161,14 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
             Roomprice = (TextView)itemView.findViewById(R.id.Roomprice);
             bookedOrNot = (TextView)itemView.findViewById(R.id.bookedOrNot);
             kpay = itemView.findViewById(R.id.kpay);
+            delete= itemView.findViewById(R.id.delete);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

@@ -77,6 +77,15 @@ public class Displayrooms extends AppCompatActivity {
                         }
                         RoomDisplayAdapter roomDisplayAdapter = new RoomDisplayAdapter(dataList, getApplicationContext(),Customersuid);
                         rcvDisplayContainer.setAdapter(roomDisplayAdapter);
+
+                        //this is to delete the row
+                        roomDisplayAdapter.setOnItemClickListener(new DisplayRoomAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                dataList.remove(position);
+                                roomDisplayAdapter.notifyItemRemoved(position);
+                            }
+                        });
                     }
                 }
 

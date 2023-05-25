@@ -35,6 +35,8 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             />
+
+
         <TextView
             android:id="@+id/Roomprice"
             android:layout_width="wrap_content"
@@ -47,6 +49,16 @@
             android:layout_below="@+id/noOfRooms"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
+            />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/baseline_delete_24"
+            android:layout_toRightOf="@id/Roomprice"
             />
         <TextView
             android:id="@+id/landmarkdisplay"
