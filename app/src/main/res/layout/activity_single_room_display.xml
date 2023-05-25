@@ -27,15 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/chat"
-        android:id="@+id/chats"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
 
 
@@ -299,14 +290,31 @@
         android:id="@+id/getMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="117dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="136dp"
+        android:background="@drawable/button"
         android:text="Get Location"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/giveReviewRating" />
+
+    <TextView
+        android:id="@+id/chats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginEnd="74dp"
+        android:text="@string/ChatOwner"
+        android:paddingRight="@dimen/_15sdp"
+        android:paddingLeft="@dimen/_15sdp"
         android:background="@drawable/button"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/giveReviewRating" />
+        app:layout_constraintStart_toEndOf="@+id/getMap"
+        app:layout_constraintTop_toBottomOf="@+id/viewRatingandreview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

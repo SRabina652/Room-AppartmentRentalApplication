@@ -15,6 +15,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -69,6 +71,7 @@ public class AddRooms extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rooms);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //checkboxs
 
@@ -215,7 +218,7 @@ public class AddRooms extends AppCompatActivity {
                                     if(getPrice.isEmpty() || getPeople.isEmpty() || getRequirement.isEmpty() || getlandmark.isEmpty() || getFacilities.isEmpty() || fPath.getPath() == null){
                                         Toast.makeText(AddRooms.this, "Please give all the details in the form", Toast.LENGTH_SHORT).show();
                                     }else {
-                                        addRoomDataHolder holder = new addRoomDataHolder("notBooked", nodeval, search, Rooms.getText().toString().trim(), checkedItems, getPrice, getPeople, getRequirement, getFacilities, getlandmark, latitude.trim(), longitude.trim(),ownersuid, uri.toString());
+                                        addRoomDataHolder holder = new addRoomDataHolder("false", nodeval, search, Rooms.getText().toString().trim(), checkedItems, getPrice, getPeople, getRequirement, getFacilities, getlandmark, latitude.trim(), longitude.trim(),ownersuid, uri.toString());
                                         dataReference.child(nodeval).setValue(holder);
 
 

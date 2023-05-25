@@ -100,11 +100,12 @@ public class DisplayRoomAdapter extends FirebaseRecyclerAdapter<addRoomDataHolde
     }
 
     public void khaltiPayment(Context mctx,KhaltiButton khaltiButton,String productId,String productName,String price){
-        Config.Builder builder = new Config.Builder(Constant.pub, "Product ID", "Main", 1100L, new OnCheckOutListener() {
+        Long changePrice=Long.parseLong(price);
+        Config.Builder builder = new Config.Builder(Constant.pub, productId, productName, changePrice, new OnCheckOutListener() {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
                 Log.i(action, errorMap.toString());
-                Toast.makeText(mctx, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mctx, errorMap.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

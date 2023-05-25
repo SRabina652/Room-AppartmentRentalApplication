@@ -21,6 +21,7 @@ import com.example.rentalapplication.Adapter.RoomDisplayAdapter;
 import com.example.rentalapplication.model.addRoomDataHolder;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,16 +35,10 @@ public class Displayrooms extends AppCompatActivity {
 
     RecyclerView rcvDisplayContainer;
 
-//    DisplayRoomAdapter adapter;
     RoomDisplayAdapter roomAdapter;
 
+    String Customersuid;
     SearchView searchView;
-
-//    TextView logout;
-//
-//    Button chatting;
-
-//    androidx.appcompat.widget.Toolbar DisplayRoomstoolbar;
 
     private DatabaseReference databaseReference;
 
@@ -57,41 +52,15 @@ public class Displayrooms extends AppCompatActivity {
         rcvDisplayContainer = findViewById(R.id.rcvDisplayContainer);
         searchView = findViewById(R.id.searchView);
 
-//        chatting=findViewById(R.id.chatWithOther);
-
-//        chatting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Intent intent = new Intent(Displayrooms.this, ChatLayoutActivity.class);
-//                startActivity(intent);
-//
-//            }
-//        });
-
-//        logout=findViewById(R.id.logout);
-
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-//                firebaseAuth.signOut();
-//
-//                Intent intent = new Intent(Displayrooms.this, Signup.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Rooms");
         rcvDisplayContainer.setLayoutManager(new LinearLayoutManager(this));
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
 
-
-
-
-
+        if (user != null) {
+            Customersuid = user.getUid();
+        }
     }
 
     @Override
@@ -106,7 +75,7 @@ public class Displayrooms extends AppCompatActivity {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             dataList.add(ds.getValue(addRoomDataHolder.class));
                         }
-                        RoomDisplayAdapter roomDisplayAdapter = new RoomDisplayAdapter(dataList, getApplicationContext());
+                        RoomDisplayAdapter roomDisplayAdapter = new RoomDisplayAdapter(dataList, getApplicationContext(),Customersuid);
                         rcvDisplayContainer.setAdapter(roomDisplayAdapter);
                     }
                 }
@@ -145,7 +114,9 @@ public class Displayrooms extends AppCompatActivity {
             }
         }
 
-        RoomDisplayAdapter roomDisplayAdapter = new RoomDisplayAdapter(myList, getApplicationContext());
+
+
+        RoomDisplayAdapter roomDisplayAdapter = new RoomDisplayAdapter(myList, getApplicationContext(),Customersuid);
         rcvDisplayContainer.setAdapter(roomDisplayAdapter);
     }
 

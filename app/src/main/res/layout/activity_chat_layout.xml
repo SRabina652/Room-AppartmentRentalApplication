@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
-        android:background="@color/lightBlue"
+        android:background="@color/red"
         android:id="@+id/toolbar">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
        <com.google.android.material.tabs.TabLayout
            android:layout_width="match_parent"
            android:layout_height="?attr/actionBarSize"
-           android:backgroundTint="@color/lightBlue"
+           android:backgroundTint="@color/red"
            android:contentDescription="@string/all_chat"
            app:tabIndicatorColor="@color/white"
            android:visibility="visible"

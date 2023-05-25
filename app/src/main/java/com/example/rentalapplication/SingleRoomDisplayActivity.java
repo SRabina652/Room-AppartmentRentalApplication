@@ -27,7 +27,7 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
 
     String ownersuid;
 
-    Button chatBtn;
+    TextView chatBtn;
 
     ImageView imgdisplay;
     TextView people,price,landmark,requirements,facilities,rooms,typetoUseRooms;
@@ -129,11 +129,9 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
         getMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Uri geoUri = Uri.parse("geo:" + latitude + "," + longitude + "?z=15&q=" + latitude + "," + longitude);
                 Intent intent = new Intent(Intent.ACTION_VIEW, geoUri);
                 intent.setPackage("com.google.android.apps.maps");
-
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
@@ -144,9 +142,7 @@ public class SingleRoomDisplayActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-
         Intent intent = new Intent(this, Displayrooms.class);
         startActivity(intent);
-
     }
 }

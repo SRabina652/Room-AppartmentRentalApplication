@@ -139,8 +139,11 @@ public class addRoomDataHolder {
         this.roomImg = roomImg;
     }
 
+    public addRoomDataHolder(String bookedOrNot) {
+        this.bookedOrNot = bookedOrNot;
+    }
 
-    public addRoomDataHolder(String bookedOrNot, String RandomNumber, String search, String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String latitude, String longitude,String ownersuid, String roomImg) {
+    public addRoomDataHolder(String bookedOrNot, String RandomNumber, String search, String Rooms, String checkedItems, String price, String peoples, String requirement, String facilities, String landmark, String latitude, String longitude, String ownersuid, String roomImg) {
         this.bookedOrNot = bookedOrNot;
         this.RandomNumber=RandomNumber;
         this.search=search;
