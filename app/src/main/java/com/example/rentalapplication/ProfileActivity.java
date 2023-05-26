@@ -43,6 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
     androidx.appcompat.widget.Toolbar profiletoolbar;
 
     FirebaseStorage firebaseStorage;
+
+    TextView moveToUpdateProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,8 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth= FirebaseAuth.getInstance();
         firebaseStorage= FirebaseStorage.getInstance();
 
+        moveToUpdateProfile=findViewById(R.id.moveToUpdateProfile);
+
         Drawable toolbarDrawableProfile= ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_baseline_more_vert_24);
         profiletoolbar.setOverflowIcon(toolbarDrawableProfile);
 
@@ -75,6 +79,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        moveToUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(ProfileActivity.this,UpdateProfile.class);
+                intent.putExtra("name",viewProfileUserName.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
         storageReference=firebaseStorage.getReference("images");
         storageReference.child(firebaseAuth.getUid()).child("ProfileImage").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

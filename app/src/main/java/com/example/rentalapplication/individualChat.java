@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,6 +76,9 @@ public class individualChat extends AppCompatActivity {
         SendMessagebuttonIndividualChat=findViewById(R.id.sendMessageImageView);
         individualchatToolbar=findViewById(R.id.IndividualChattoolbar);
         nameOfSpecificUser=findViewById(R.id.IndividualChattoolbarName);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         IndividualChatbackImage=findViewById(R.id.IndividualChatbackImage);
         IndividualChatbackImage.setOnClickListener(new View.OnClickListener() {

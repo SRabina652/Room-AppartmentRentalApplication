@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -30,6 +31,10 @@ public class HomePage extends AppCompatActivity {
         PostRooms=findViewById(R.id.PostRooms);
 
         chatwithOthers=findViewById(R.id.chatwithOthers);
+
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //activity to view Profile
         profile.setOnClickListener(new View.OnClickListener() {

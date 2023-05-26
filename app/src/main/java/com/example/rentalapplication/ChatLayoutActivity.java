@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.rentalapplication.Adapter.ChatsAdapter;
@@ -36,6 +37,10 @@ public class ChatLayoutActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.chatViewPager);
 
         toolbar = findViewById(R.id.toolbar);
+
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //FOR MENU ICON AND white 3 dot
         Drawable toolbarDrawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_more_vert_24);

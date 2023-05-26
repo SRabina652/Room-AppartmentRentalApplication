@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +52,9 @@ public class Displayrooms extends AppCompatActivity {
 
         rcvDisplayContainer = findViewById(R.id.rcvDisplayContainer);
         searchView = findViewById(R.id.searchView);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Rooms");
         rcvDisplayContainer.setLayoutManager(new LinearLayoutManager(this));

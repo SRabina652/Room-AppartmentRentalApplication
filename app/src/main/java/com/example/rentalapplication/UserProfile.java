@@ -3,6 +3,7 @@ package com.example.rentalapplication;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,8 +13,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -55,7 +58,8 @@ public class UserProfile extends AppCompatActivity {
 
     private FirebaseStorage firebaseStorage;
 
-
+    Toolbar toolbar;
+    ImageButton IndividualProfilebackImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,21 @@ public class UserProfile extends AppCompatActivity {
         storageReference = firebaseStorage.getReference();
         firebasefirestore = FirebaseFirestore.getInstance();
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        toolbar = findViewById(R.id.IndividualProfiletoolbar);
+
+        setSupportActionBar(toolbar);
+
+        IndividualProfilebackImage=findViewById(R.id.IndividualProfilebackImage);
+
+        IndividualProfilebackImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         img = (ImageView) findViewById(R.id.userProfilePicture);
         signupProfile = (Button) findViewById(R.id.saveProfileData);
@@ -121,8 +140,6 @@ public class UserProfile extends AppCompatActivity {
         } else if (filePath == null) {
             Toast.makeText(getApplicationContext(), "Please Upload your Image", Toast.LENGTH_LONG).show();
         } else {
-
-
             FirebaseDatabase Fdata = FirebaseDatabase.getInstance();
 //            DatabaseReference ref = Fdata.getReference().child("users").child(firebaseAuth.getUid());
             DatabaseReference ref = Fdata.getReference(firebaseAuth.getUid());
@@ -147,7 +164,7 @@ public class UserProfile extends AppCompatActivity {
                         public void onSuccess(Uri uri) {
 
                             ImageUriAccessToken = uri.toString();
-                            Toast.makeText(UserProfile.this, "Uri get Successfully", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(UserProfile.this, "Uri get Successfully", Toast.LENGTH_SHORT).show();
 
                             storetofirestore();
 
@@ -171,7 +188,7 @@ public class UserProfile extends AppCompatActivity {
             });
             Toast.makeText(this, "Image Uploaded.", Toast.LENGTH_SHORT).show();
         }
-        Intent intent = new Intent(UserProfile.this, ChatLayoutActivity.class);
+        Intent intent = new Intent(UserProfile.this, Displayrooms.class);
         startActivity(intent);
         finish();
     }

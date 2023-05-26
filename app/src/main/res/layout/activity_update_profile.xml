@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfile">
-
+    tools:context=".UpdateProfile">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="0dp"
         android:background="@color/red"
-        android:id="@+id/IndividualProfiletoolbar">
+        android:id="@+id/IndividualUpdateProfiletoolbar">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -21,7 +20,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/IndividualProfilebackImage"
+                android:id="@+id/IndividualUpdateProfilebackImage"
                 android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
                 android:background="#00FFFFFF"
                 android:layout_centerVertical="true"
@@ -33,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/IndividualProfilebackImage"
+                android:layout_toRightOf="@+id/IndividualUpdateProfilebackImage"
                 android:paddingStart="25dp"
                 android:paddingEnd="15dp"
                 android:text="Users Profile"
@@ -44,6 +43,7 @@
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,13 +51,13 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:id="@+id/profileTopic"
-        android:layout_below="@+id/IndividualProfiletoolbar"
+        android:layout_below="@+id/IndividualUpdateProfiletoolbar"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
-        android:id="@+id/userProfilePicture"
+        android:id="@+id/userUpdateProfilePicture"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_below="@+id/profileTopic"
@@ -67,27 +67,30 @@
         android:src="@color/cardview_dark_background" />
 
     <EditText
-        android:id="@+id/userProfileName"
+        android:id="@+id/userUpdateProfileName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userProfilePicture"
+        android:layout_below="@+id/userUpdateProfilePicture"
         android:layout_marginTop="20dp"
         android:hint="@string/name"
         android:inputType="textCapWords"
         android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/saveUpdateProfileData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userUpdateProfileName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Update"
+            android:background="@drawable/button"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            />
 
-    <Button
-        android:id="@+id/saveProfileData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userProfileName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/submit"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-
-        />
 
 </RelativeLayout>
