@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rentalapplication.model.ProfileDataHolder;
@@ -44,7 +45,7 @@ public class UserProfile extends AppCompatActivity {
 
     String randomKey, name1;
     StorageReference storageReference;
-    Button signupProfile;
+    TextView signupProfile;
     EditText name;
     ImageView img;
     Uri filePath;
@@ -65,7 +66,7 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         img = (ImageView) findViewById(R.id.userProfilePicture);
-        signupProfile = (Button) findViewById(R.id.saveProfileData);
+        signupProfile = (TextView) findViewById(R.id.saveProfileData);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
@@ -88,7 +89,7 @@ public class UserProfile extends AppCompatActivity {
         });
 
         img = (ImageView) findViewById(R.id.userProfilePicture);
-        signupProfile = (Button) findViewById(R.id.saveProfileData);
+        signupProfile = (TextView) findViewById(R.id.saveProfileData);
 
 
         img.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +169,9 @@ public class UserProfile extends AppCompatActivity {
 
                             storetofirestore();
 
+                            Intent intent = new Intent(UserProfile.this, Displayrooms.class);
+                            startActivity(intent);
+                            finish();
 
                         }
                     });
@@ -188,9 +192,7 @@ public class UserProfile extends AppCompatActivity {
             });
             Toast.makeText(this, "Image Uploaded.", Toast.LENGTH_SHORT).show();
         }
-        Intent intent = new Intent(UserProfile.this, Displayrooms.class);
-        startActivity(intent);
-        finish();
+
     }
 
     private void storetofirestore() {

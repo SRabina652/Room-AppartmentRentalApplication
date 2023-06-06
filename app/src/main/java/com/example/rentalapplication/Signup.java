@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -64,6 +65,7 @@ public class Signup extends AppCompatActivity {
                                 @Override
                                 public void onVerificationFailed(@NonNull FirebaseException e) {
                                     Toast.makeText(Signup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d("signup error",e.getMessage());
                                 }
 
                                 @Override
@@ -77,13 +79,11 @@ public class Signup extends AppCompatActivity {
                                 }
                             });
                 } else {
-                    Toast.makeText(Signup.this, "Something wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Signup.this, "Please enter the valid Phone Number", Toast.LENGTH_LONG).show();
                 }
             }
-
         });
     }
-
 //    it checks and if the user is already logged in it directly passes the user to the main actitity
     @Override
     protected void onStart() {

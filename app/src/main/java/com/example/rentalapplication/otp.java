@@ -74,7 +74,7 @@ public class otp extends AppCompatActivity {
                                             startActivity(intent);
                                             finish();
                                         } else {
-                                            Toast.makeText(otp.this, "Please check your internet connections", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(otp.this, "The otp you provided is wrong or there is error with the internet connections", Toast.LENGTH_LONG).show();
                                         }
                                     }
                                 });
@@ -110,7 +110,8 @@ public class otp extends AppCompatActivity {
                             public void onCodeSent(@NonNull String otpbackend, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(otpbackend, forceResendingToken);
                                 backendotp = otpbackend;
-                                Toast.makeText(otp.this, "verification code send successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(otp.this, "verification code send successfully",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         });
             }

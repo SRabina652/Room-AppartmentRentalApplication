@@ -66,8 +66,15 @@ public class RatingAndReview extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String name=snapshot.child("name").getValue().toString();
 
-                        RatingAndReviewModel rrModel=new RatingAndReviewModel(ratedNumber,userReview.getText().toString().trim(),uniqueUserId,name);
-                        dataReference.child(rootnode).child("ratingAndReview").child(uniqueUserId).setValue(rrModel);
+                        if((name.isEmpty() || ratedNumber==0) || (name.isEmpty()&& ratedNumber==0)){
+                            Toast.makeText(RatingAndReview.this, "You cannot submit null rating and review", Toast.LENGTH_SHORT).show();
+                        }else{
+                            RatingAndReviewModel rrModel=new RatingAndReviewModel(ratedNumber,userReview.getText().toString().trim(),uniqueUserId,name);
+                            dataReference.child(rootnode).child("ratingAndReview").child(uniqueUserId).setValue(rrModel);
+                            Intent intent=new Intent(RatingAndReview.this,DisplayReviewAndRating.class);
+                            intent.putExtra("randomnumber",rootnode);
+                            startActivity(intent);
+                        }
 
                     }
 
@@ -77,9 +84,7 @@ public class RatingAndReview extends AppCompatActivity {
                     }
                 });
 
-                Intent intent=new Intent(RatingAndReview.this,DisplayReviewAndRating.class);
-                intent.putExtra("randomnumber",rootnode);
-                startActivity(intent);
+
             }
         });
 

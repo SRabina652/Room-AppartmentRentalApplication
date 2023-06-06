@@ -212,7 +212,8 @@ public class AddRooms extends AppCompatActivity {
                                     getRequirement=requirement.getText().toString().trim();
                                     getlandmark=landmark.getText().toString().trim();
                                     getFacilities=facilities.getText().toString().trim();
-                                    search = Rooms.getText().toString().trim() + " " + checkedItems + " " + getPrice + " " + getPeople + " " + getFacilities +" "+getRequirement +" " + getlandmark;
+                                    search = Rooms.getText().toString().trim() + " " + checkedItems + " " + getPrice +
+                                            " " + getPeople + " " + getFacilities +" "+getRequirement +" " + getlandmark;
                                     nodeval = UUID.randomUUID().toString().replaceAll("-", "");
 
                                     if(getPrice.isEmpty() || getPeople.isEmpty() || getRequirement.isEmpty() || getlandmark.isEmpty() || getFacilities.isEmpty() || fPath.getPath() == null){
